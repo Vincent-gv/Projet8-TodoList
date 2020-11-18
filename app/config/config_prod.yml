@@ -1,5 +1,5 @@
 imports:
-    - { resource: config.yaml }
+    - { resource: config.yml }
 
 #doctrine:
 #    orm:

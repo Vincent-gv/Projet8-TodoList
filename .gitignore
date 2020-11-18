@@ -13,5 +13,12 @@
 
 .env
 
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
 
+<<<<<<< Updated upstream
 app/config/parameters.yml
+=======
+uml/
+>>>>>>> Stashed changes

@@ -14,4 +14,4 @@
 .env
 
 
-app/config/parameters.yml
+config/parameters.yaml

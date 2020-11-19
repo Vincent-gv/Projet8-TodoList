@@ -50,9 +50,4 @@ class SecurityController extends AbstractController
     {
         // This code is never executed.
     }
-
-    public function generateToken()
-    {
-        return rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '=');
-    }
 }

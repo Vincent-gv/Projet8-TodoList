@@ -17,7 +17,9 @@
                                     class="glyphicon glyphicon-remove"></span>{% endif %}
                         </h4>
                         <h4><a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a></h4>
+                        <small>Crée le {{ task.createdAt | date('d/m/Y') }}</small>
                         <p>{{ task.content }}</p>
+                        <p class="text-capitalize">{{ task.user.username }}</p>
                     </div>
                     <div>
                         <form action="{{ path('task_toggle', {'id' : task.id }) }}">

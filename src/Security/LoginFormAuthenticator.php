@@ -74,7 +74,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         }
 
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $credentials['username']]);
-
+dump($user);
         if (!$user) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Cet utilisateur n\'a pas été trouvé.');

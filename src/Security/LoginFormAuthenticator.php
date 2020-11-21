@@ -27,10 +27,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     public const LOGIN_ROUTE = 'login';
 
-    private EntityManagerInterface $entityManager;
-    private UrlGeneratorInterface $urlGenerator;
-    private CsrfTokenManagerInterface $csrfTokenManager;
-    private UserPasswordEncoderInterface $passwordEncoder;
+    private $entityManager;
+    private $urlGenerator;
+    private $csrfTokenManager;
+    private $passwordEncoder;
     /**
      * @var Session
      */
@@ -54,8 +54,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     public function getCredentials(Request $request)
     {
         $credentials = [
-            'username' => $request->request->get('username'),
-            'password' => $request->request->get('password'),
+            'username' => $request->request->get('_username'),
+            'password' => $request->request->get('_password'),
             'csrf_token' => $request->request->get('_csrf_token'),
         ];
         $request->getSession()->set(
@@ -74,7 +74,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         }
 
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $credentials['username']]);
-dump($user);
         if (!$user) {
             // fail authentication with a custom error
             throw new CustomUserMessageAuthenticationException('Cet utilisateur n\'a pas été trouvé.');
@@ -103,7 +102,6 @@ dump($user);
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-        $username = $token->getUser()->getUsername();
         return new RedirectResponse($this->urlGenerator->generate('homepage'));
     }
 

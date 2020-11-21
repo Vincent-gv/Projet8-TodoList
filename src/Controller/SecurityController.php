@@ -13,7 +13,7 @@ class SecurityController extends AbstractController
     /**
      * @var UserRepository
      */
-    private UserRepository $repository;
+    private $repository;
 
     public function __construct(UserRepository $repository)
     {

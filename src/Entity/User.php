@@ -16,9 +16,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class User implements UserInterface
 {
-    const ROLE_USER = 'ROLE_USER';
-    const ROLE_ADMIN = 'ROLE_ADMIN';
-
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -48,6 +45,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Task::class, mappedBy="user")
      */
     private $tasks;
+
+    /**
+     * @ORM\Column(name="role", type="simple_array")
+     */
+    private array $roles;
 
     public function getId()
     {
@@ -106,7 +108,14 @@ class User implements UserInterface
 
     public function getRoles()
     {
-        return ['ROLE_USER'];
+        return $this->roles;
+    }
+
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
     }
 
     public function getToken(): ?string

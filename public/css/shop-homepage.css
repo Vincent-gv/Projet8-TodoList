@@ -109,6 +109,20 @@ input {
     color: #333;
 }
 
+#user {
+    margin: 0 20px;
+}
+
+#user label {
+    display: flex;
+}
+
+#user input {
+    padding: 4px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
 footer {
     margin: 50px 0;
 }

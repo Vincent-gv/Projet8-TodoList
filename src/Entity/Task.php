@@ -43,7 +43,7 @@ class Task
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tasks")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      */
     private ?User $user;
 
@@ -89,6 +89,18 @@ class Task
     }
 
     public function isDone()
+    {
+        return $this->isDone;
+    }
+
+    public function setIsDone($isDone)
+    {
+        $this->isDone = $isDone;
+
+        return $this;
+    }
+
+    public function getIsDone()
     {
         return $this->isDone;
     }

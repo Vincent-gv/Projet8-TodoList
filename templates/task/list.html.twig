@@ -8,6 +8,11 @@
         <a href="{{ path('task_create') }}" class="btn btn-info pull-right add-task-btn">Créer une tâche</a>
     </div>
     <div class="row">
+        <div class="col-xs-12">
+            <h4 class="text-uppercase ">{{ list_type }}</h4>
+        </div>
+    </div>
+    <div class="row">
         {% for task in tasks %}
             <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
@@ -22,11 +27,13 @@
                         <p>Créée par <span class="text-capitalize">{{ task.user.username }}</span></p>
                     </div>
                     <div>
+                        {% if app.user %}
                         <form action="{{ path('task_toggle', {'id' : task.id }) }}">
                             <button class="btn btn-success btn-sm pull-right edit-btn">
                                 {% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée{% endif %}
                             </button>
                         </form>
+                        {% endif %}
                         {% if is_granted('ROLE_ADMIN') %}
                             {% if (task.user.username == app.user.username) or (task.user.username == 'anonyme') %}
                                 <form action="{{ path('task_delete', {'id' : task.id }) }}">
@@ -40,9 +47,6 @@
                                 </form>
                             {% endif %}
                         {% endif %}
-
-
-
                     </div>
                 </div>
             </div>

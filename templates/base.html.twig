@@ -39,6 +39,9 @@
 <div class="container">
     <div class="row navbar-top">
         <a href="{{ path('user_create') }}" class="btn btn-primary mr-5 top-btn">Créer un utilisateur</a>
+        {% if app.user %}
+            <a href="{{ path('user_list') }}" class="btn btn-default top-btn">Liste des utilisateurs</a>
+        {% endif %}
 
         {% if app.user %}
             <a href="{{ path('app_logout') }}" class="pull-right btn btn-danger top-btn">Se déconnecter</a>

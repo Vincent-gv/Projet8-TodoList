@@ -24,7 +24,7 @@
                         <h4><a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a></h4>
                         <small>Crée le {{ task.createdAt | date('d/m/Y') }}</small>
                         <p>{{ task.content }}</p>
-                        <p>Créée par <span class="text-capitalize">{{ task.user.username }}</span></p>
+                        <p>Créée par <span class="text-capitalize">{% if task.user == null %}Anonyme{% else %} {{task.user.username}}{% endif %}</span></p>
                     </div>
                     <div>
                         {% if app.user %}
@@ -34,18 +34,17 @@
                             </button>
                         </form>
                         {% endif %}
-                        {% if is_granted('ROLE_ADMIN') %}
-                            {% if (task.user.username == app.user.username) or (task.user.username == 'anonyme') %}
-                                <form action="{{ path('task_delete', {'id' : task.id }) }}">
-                                    <button class="btn btn-danger btn-sm pull-right delete-btn">Supprimer</button>
-                                </form>
-                            {% endif %}
-                        {% elseif is_granted('ROLE_USER') %}
-                            {% if (task.user.username == app.user.username) %}
-                                <form action="{{ path('task_delete', {'id' : task.id }) }}">
-                                    <button class="btn btn-danger btn-sm pull-right delete-btn">Supprimer</button>
-                                </form>
-                            {% endif %}
+
+
+
+                        {% if task.user == app.user %}
+                            <form action="{{ path('task_delete', {'id' : task.id }) }}">
+                                <button class="btn btn-danger btn-sm pull-right delete-btn">Supprimer</button>
+                            </form>
+                        {% elseif task.user == null and is_granted('ROLE_ADMIN')%}
+                            <form action="{{ path('task_delete', {'id' : task.id }) }}">
+                                <button class="btn btn-danger btn-sm pull-right delete-btn">Supprimer</button>
+                            </form>
                         {% endif %}
                     </div>
                 </div>

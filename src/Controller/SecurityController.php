@@ -13,7 +13,7 @@ class SecurityController extends AbstractController
     /**
      * @var UserRepository
      */
-    private $repository;
+    private UserRepository $repository;
 
     public function __construct(UserRepository $repository)
     {
@@ -44,10 +44,10 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/logout", name="logout")
+     * @Route("/logout", name="app_logout")
      */
-    public function logoutCheck()
+    public function logout()
     {
-        // This code is never executed.
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }

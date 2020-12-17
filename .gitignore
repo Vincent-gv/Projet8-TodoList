@@ -22,4 +22,12 @@ app/config/parameters.yml
 uml/
 >>>>>>> Stashed changes
 
+<<<<<<< Updated upstream
 bin/.phpunit/
+=======
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+>>>>>>> Stashed changes

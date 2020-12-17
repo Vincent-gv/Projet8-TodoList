@@ -21,3 +21,5 @@ app/config/parameters.yml
 =======
 uml/
 >>>>>>> Stashed changes
+
+bin/.phpunit/

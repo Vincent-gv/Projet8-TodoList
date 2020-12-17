@@ -1,6 +1,6 @@
 # Todo & Co
 
-### Project #8 - Application Developer Student - PHP / Symfony Openclassrooms
+### Project #8 - Application Developer Student - PHP / Symfony OpenClassrooms
 
 Improve an existing ToDo & Co Symfony application
 
@@ -8,8 +8,8 @@ Improve an existing ToDo & Co Symfony application
 
 ### Minimum required
 
-* Apache server 2.4.
-* Version PHP 7. 
+* Apache server 2.4
+* PHP 7
 
 ### Installation
 
@@ -20,15 +20,25 @@ git clone https://github.com/Vincent-gv/Projet8-TodoList.git
 * Run 
 `` composer install 
 ``  at the root of the folder to install the dependencies.
-* Create a local database and update environment variables in .env file.
-* Run Doctrine to load SQL tables: 
+* Create a local database: 
 `` 
 php bin/console doctrine:database:create
+`` 
+* Update environment variables in .env file of the project and run Doctrine to load SQL tables: 
+`` 
+php bin/console doctrine:schema:create
 `` 
  * Load fixtures into the database: 
 `` 
  php bin/console doctrine:fixtures:load
+``  
+ * Start Symfony server: 
 `` 
+ symfony server:start
+`` 
+* You can test the application with Admin account:
+ > login: admin
+ > password: admin
 
 ## Developed with
 
@@ -44,7 +54,7 @@ https://github.com/Vincent-gv/
 
 The project is hosted [online](https://todo.vincent-dev.com/).
 
-## Project badges```
+## Project badges
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b9fcb8208a03424797c3d2b4a49562fb)](https://www.codacy.com/gh/Vincent-gv/projet8-TodoList/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Vincent-gv/projet8-TodoList&amp;utm_campaign=Badge_Grade)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2b78659c63a712b969bc/maintainability)](https://codeclimate.com/github/Vincent-gv/projet8-TodoList/maintainability)

@@ -27,10 +27,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     public const LOGIN_ROUTE = 'login';
 
-    private $entityManager;
-    private $urlGenerator;
-    private $csrfTokenManager;
-    private $passwordEncoder;
+    private EntityManagerInterface $entityManager;
+    private UrlGeneratorInterface $urlGenerator;
+    private CsrfTokenManagerInterface $csrfTokenManager;
+    private UserPasswordEncoderInterface $passwordEncoder;
     /**
      * @var Session
      */
@@ -66,6 +66,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         return $credentials;
     }
 
+
+    /**
+     * @param $credentials
+     * @param UserProviderInterface $userProvider
+     * @return User|object
+     * @codeCoverageIgnore
+     */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
@@ -91,12 +98,20 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
      * Used to upgrade (rehash) the user's password automatically over time.
      * @param $credentials
      * @return string|null
+     * @codeCoverageIgnore
      */
     public function getPassword($credentials): ?string
     {
         return $credentials['password'];
     }
 
+    /**
+     * @codeCoverageIgnore
+     * @param Request $request
+     * @param TokenInterface $token
+     * @param $providerKey
+     * @return RedirectResponse
+     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {

@@ -56,5 +56,5 @@ The project is hosted [online](https://todo.vincent-dev.com/).
 
 ## Project badges
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/b9fcb8208a03424797c3d2b4a49562fb)](https://www.codacy.com/gh/Vincent-gv/projet8-TodoList/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Vincent-gv/projet8-TodoList&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/b9fcb8208a03424797c3d2b4a49562fb)](https://app.codacy.com/gh/Vincent-gv/Projet8-TodoList/dashboard)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2b78659c63a712b969bc/maintainability)](https://codeclimate.com/github/Vincent-gv/projet8-TodoList/maintainability)

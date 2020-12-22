@@ -42,10 +42,12 @@ php bin/console doctrine:schema:create
 
 ## Developed with
 
-* ** Symfony 5.1 **
+* ** Symfony 5.2 **
 * ** PHP 7.4.7 **
 * ** Mysql **
 * ** Composer **
+* ** Xdebug 3.0.1 **
+* ** PHPUnit 7.5.20 **
 
 ## Author
 

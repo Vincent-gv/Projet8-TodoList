@@ -39,4 +39,5 @@ security:
     access_control:
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/tasks/create, roles: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/tasks/edit, roles: IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/users, roles: ROLE_ADMIN }

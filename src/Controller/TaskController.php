@@ -15,8 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Class TaskController
  * @package App\Controller
- *
- * @IsGranted("ROLE_USER")
  */
 
 class TaskController extends AbstractController
@@ -79,7 +77,7 @@ class TaskController extends AbstractController
      */
     public function editAction(Task $task, Request $request)
     {
-        $this->denyAccessUnlessGranted('EDIT', $task);
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
 
         $form = $this->createForm(TaskType::class, $task);
 
@@ -106,7 +104,7 @@ class TaskController extends AbstractController
      */
     public function toggleTaskAction(Task $task)
     {
-        $this->denyAccessUnlessGranted('TOGGLE', $task);
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
 
         $task->toggle(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
@@ -123,17 +121,16 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task)
     {
-        if ($task->getUser()->getUsername() === "Anonyme") {
-            $this->denyAccessUnlessGranted('deleteAnonyme', $task);
-        } else {
-            $this->denyAccessUnlessGranted('delete', $task,);
+        if ($task->getUser() === $this->getUser() ||($task->getUser() === null && $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($task);
+            $em->flush();
+
+            $this->addFlash('success', 'La tâche a bien été supprimée.');
+            return $this->redirectToRoute('task_list');
         }
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($task);
-        $em->flush();
-
-        $this->addFlash('success', 'La tâche a bien été supprimée.');
+        $this->addFlash('error', 'Vous ne pouvez pas supprimer cette tâche.');
 
         return $this->redirectToRoute('task_list');
     }

@@ -25,7 +25,7 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
     public function handle(Request $request, AccessDeniedException $accessDeniedException)
     {
         // add a custom flash message and redirect to the login page
-        $this->session->getFlashBag()->add('error', 'Seuls les utilisateurs ayant le rôle administrateur peuvent accéder aux pages de gestion des utilisateurs.');
+        $this->session->getFlashBag()->add('error', 'Vous n\'avez pas les droits suffisants pour accéder à cette page.');
 
         return new RedirectResponse($this->urlGenerator->generate('homepage'));
 

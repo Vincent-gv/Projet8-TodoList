@@ -21,27 +21,27 @@
                             {% if task.isDone %}<span class="glyphicon glyphicon-ok"></span>{% else %}<span
                                     class="glyphicon glyphicon-remove"></span>{% endif %}
                         </h4>
-                        <h4><a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a></h4>
+                        <h4>
+                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}<a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a>{% else %}{{ task.title }}{% endif %}</h4>
                         <small>Crée le {{ task.createdAt | date('d/m/Y') }}</small>
                         <p>{{ task.content }}</p>
-                        <p>Créée par <span class="text-capitalize">{% if task.user == null %}Anonyme{% else %} {{task.user.username}}{% endif %}</span></p>
+                        <p>Créée par <span
+                                    class="text-capitalize">{% if task.user == null %}Anonyme{% else %} {{ task.user.username }}{% endif %}</span>
+                        </p>
                     </div>
                     <div>
                         {% if app.user %}
-                        <form action="{{ path('task_toggle', {'id' : task.id }) }}">
-                            <button class="btn btn-success btn-sm pull-right edit-btn">
-                                {% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée{% endif %}
-                            </button>
-                        </form>
+                            <form action="{{ path('task_toggle', {'id' : task.id }) }}">
+                                <button class="btn btn-success btn-sm pull-right edit-btn">
+                                    {% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée{% endif %}
+                                </button>
+                            </form>
                         {% endif %}
-
-
-
-                        {% if task.user == app.user %}
+                        {% if task.user == app.user and is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                             <form action="{{ path('task_delete', {'id' : task.id }) }}">
                                 <button class="btn btn-danger btn-sm pull-right delete-btn">Supprimer</button>
                             </form>
-                        {% elseif task.user == null and is_granted('ROLE_ADMIN')%}
+                        {% elseif task.user == null and is_granted('ROLE_ADMIN') %}
                             <form action="{{ path('task_delete', {'id' : task.id }) }}">
                                 <button class="btn btn-danger btn-sm pull-right delete-btn">Supprimer</button>
                             </form>
@@ -55,5 +55,10 @@
                                                              class="btn btn-warning pull-right">Créer une tâche</a>
             </div>
         {% endfor %}
+    </div>
+
+    <div class="row tasks-nav">
+        <a href="{{ path('done_list') }}" class="btn btn-primary pull-right add-task-btn">Consulter la liste des tâches terminées</a>
+        <a href="{{ path('task_list') }}" class="btn btn-info pull-right add-task-btn">Consulter la liste des tâches à faire</a>
     </div>
 {% endblock %}

@@ -10,7 +10,6 @@
 
 .idea/
 
-.env
 
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
@@ -31,3 +30,5 @@ bin/.phpunit/
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 >>>>>>> Stashed changes
+
+docs/

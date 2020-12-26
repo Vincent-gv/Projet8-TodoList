@@ -127,10 +127,7 @@ class TaskController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'La tâche a bien été supprimée.');
-            return $this->redirectToRoute('task_list');
         }
-
-        $this->addFlash('error', 'Vous ne pouvez pas supprimer cette tâche.');
 
         return $this->redirectToRoute('task_list');
     }

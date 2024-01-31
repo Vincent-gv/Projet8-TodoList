@@ -52,8 +52,6 @@ php bin/console doctrine:schema:create
 ## Author
 
 ** Vincent Gauchevertu ** - Openclassrooms student
-https://github.com/Vincent-gv/
-
 The project is hosted [online](https://todo.vincent-dev.com/).
 
 ## Project badges
